@@ -1,1 +1,0 @@
-cmd_/home/ubuntu/computer_architecture/hello2.ko := ccache arm-linux-gnueabihf-ld -r -EL -z noexecstack -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds  --build-id  -o /home/ubuntu/computer_architecture/hello2.ko /home/ubuntu/computer_architecture/hello2.o /home/ubuntu/computer_architecture/hello2.mod.o ;  true
