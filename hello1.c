@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
+
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/printk.h>
@@ -70,14 +71,17 @@ static void __exit hello1_exit(void)
 	struct hello_item *pos, *n;
 	unsigned int idx = 0;
 
+	pr_debug("hello1: about to dump timing list (count unknown at compile-time)\n");
 	list_for_each_entry_safe(pos, n, &hello_head, list) {
 		s64 delta_ns = ktime_to_ns(ktime_sub(pos->t_after,
 						     pos->t_before));
-		pr_info("hello1: print #%u took %lld ns\n", ++idx,
+		pr_debug("hello1: print #%u took %lld ns\n", ++idx,
 			(long long)delta_ns);
 		list_del(&pos->list);
 		kfree(pos);
 	}
+	pr_debug("hello1: finished dumping timing list, freeing nodes done\n");
+
 
 	pr_info("hello1: unloaded\n");
 }
